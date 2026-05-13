@@ -1,15 +1,17 @@
 import logging
 import os
 
-# Create logs folder if not exists
+# Create logs folder
 os.makedirs("logs", exist_ok=True)
 
 # Configure logger
 logging.basicConfig(
-    filename="logs/app.log",
     level=logging.INFO,
-    format="%(asctime)s - %(levelname)s - %(message)s"
+    format="%(asctime)s - %(levelname)s - %(message)s",
+    handlers=[
+        logging.FileHandler("logs/app.log"),
+        logging.StreamHandler()
+    ]
 )
 
-# Create logger object
 logger = logging.getLogger()
